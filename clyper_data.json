@@ -1,27 +1,27 @@
 {
-  "ehrugdfjgdg": {
-    "text": "some_text",
-    "info": "",
-    "date": "2025-06-30"
+  "react": {
+    "text": "npm create-vite@latest",
+    "info": "jsut a line for creating react apps with vite",
+    "date": "2025-07-03"
   },
-  "1234": {
-    "text": "fhdsfd",
-    "info": "",
-    "date": "2025-06-30"
+  "mp-reset": {
+    "text": "*,        *::before,        *::after {            box-sizing: border-box;        }        * {            margin: 0;            padding: 0;        }",
+    "info": "a css reset",
+    "date": "2025-07-03"
   },
-  "s sss": {
-    "text": "some string",
-    "info": "",
-    "date": "2025-06-30"
+  "site": {
+    "text": "touch index.html style.css script.js",
+    "info": "a command for creating necessary files for a wwebsite in linux",
+    "date": "2025-07-03"
   },
-  "abcdef": {
-    "text": "gdhuirh iselhytuvlhritvj",
+  "somestr": {
+    "text": "eytbyv\"evtrvn",
     "info": "",
-    "date": "2025-06-30"
+    "date": "2025-07-03"
   },
-  "dfbdejtkre": {
-    "text": "uerynvuet",
-    "info": "",
-    "date": "2025-06-30"
+  "dark": {
+    "text": "window.PDFViewerApplication.pdfViewer.container.style.filter = \"invert(0.9) grayscale(0.6)\"",
+    "info": "a script to enable dark mode in pdfs in firefox",
+    "date": "2025-07-03"
   }
 }
