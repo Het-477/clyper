@@ -52,11 +52,11 @@ def add_data():
         print('❌ Text cannot be empty.')
         return 
 
-    if check_unwanted_chars(text):
-        if not take_user_validation(text):
-            print("❌ Entry cancelled.")
-            return
-        text = remove_unwanted_chars(text)
+    # if check_unwanted_chars(text):
+    #     if not take_user_validation(text):
+    #         print("❌ Entry cancelled.")
+    #         return
+    #     text = remove_unwanted_chars(text)
 
     key = input("Add a key for your text: ").strip()
     if not key:
@@ -94,22 +94,59 @@ def add_data():
     print(f'✅ Entry for key "{key}" added successfully.')
 
 
+def list_data():
+    if not DATA:
+        print("📭 No entries found.")
+        return
+    print("📋 Saved entries:")
+    for key, value in DATA.items():
+        print(f'🔑 {key} — {value.get("info", "")} ({value.get("date", "no date")})')
+
+def delete_data(key):
+    key = key.strip()
+    if key not in DATA:
+        print(f'❌ Key "{key}" does not exist.')
+        return
+    
+    confirm = input(f'⚠️ Are you sure you want to delete "{key}"? (y/n): ').strip().lower()
+    if confirm != 'y':
+        print("❌ Deletion cancelled.")
+        return
+
+    del DATA[key]
+    with open(DATA_FILE, 'w') as file:
+        json.dump(DATA, file, indent=2)
+
+    print(f'🗑️ Entry for key "{key}" deleted.')
+
+
 def main():
     if len(sys.argv) < 2:
         print("Usage:")
-        print("  pclip [key]       - copy saved text for key to clipboard")
-        print("  pclip add         - add a new key-text pair")
-        print("  pclip list        - list all saved keys")
+        print("  clyper [key]       - copy saved text for key to clipboard")
+        print("  clyper add         - add a new key-text pair")
+        print("  clyper list        - list all saved keys")
+        print("  clyper delete [key]- delete a key")
         sys.exit()
 
     command = sys.argv[1].lower()
 
     if command in ["add", "a"]:
         add_data()
-    # elif command == "list":
-    #     list_data()
-    # else:
-    #     copy_to_clipboard(command)
+    elif command == "list":
+        list_data()
+    elif command == "delete":
+        if len(sys.argv) < 3:
+            print("❌ Please specify the key to delete.")
+        else:
+            delete_data(sys.argv[2])
+    else:
+        key = command
+        if key in DATA:
+            pyperclip.copy(DATA[key]["text"])
+            print(f'📋 Copied text for key "{key}" to clipboard.')
+        else:
+            print(f'❌ Key "{key}" not found.')
 
 if __name__ == "__main__":
     main()
